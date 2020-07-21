@@ -29,6 +29,14 @@
     width: 50%;
     height: 100%;
 }
+.cursor1{
+    position: absolute;
+    border-radius: 100%;
+      width: 40px;
+      height: 40px;
+      background-color:rgba(194, 235, 11, 0.966);
+      z-index: 5;
+    }
 
 button {
     width: 200px;

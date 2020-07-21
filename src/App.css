@@ -9,12 +9,15 @@ body{
 * {
   margin: 0;
   top: 0;
+  cursor: none;
 }
 
 .background {
   background-color: whitesmoke;
 
 }
+
+
 
 /* video {
   width: 100%;

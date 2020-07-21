@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Blog.css'
 import blogback from '../../background/blogback.mp4'
 import { makeStyles } from '@material-ui/core/styles';
@@ -41,19 +41,12 @@ export default function Blog() {
     const classes = useStyles();
     const card1Animation = useWebAnimations({
         keyframes: [
-
-            // { transform: 'rotate(0deg)', opacity: '0' },
-            // {scale: '0'},
-            // {scale: '1'},
-            {width: '0px', height: '0px', backgroundColor: 'black'},
-            {width: '90px', height: '100px', backgroundColor: 'black'},
-            {width: '190px', height: '200px', backgroundColor: 'black'},
-            {width: '280px', height: '300px'},
-            {width: '360px',height: '400px' },
-            // { transform: 'rotate(360deg)', opacity: '1' },
+            {  opacity: '0', },
+            { transform: 'translateX(-10px)', opacity: '0.5',  },
+            { transform: 'translateX(0px)', opacity: '1',  },
         ],
         timing: {
-            duration: 1000,
+            duration: 2000,
             iterations: 1,
             easing: "ease-in-out",
 
@@ -61,111 +54,115 @@ export default function Blog() {
     })
     const card2Animation = useWebAnimations({
         keyframes: [
-
-            // { transform: 'rotate(0deg)', opacity: '0' },
-            // {scale: '0'},
-            // {scale: '1'},
-            {width: '0px', height: '0px', backgroundColor: 'black'},
-            {width: '20px', height: '10px', backgroundColor: 'black'},
-            {width: '30px', height: '20px', backgroundColor: 'black'},
-            {width: '40px', height: '30px', backgroundColor: 'black'},
-            {width: '50px', height: '40px', backgroundColor: 'black'},
-            {width: '60px', height: '50px', backgroundColor: 'black'},
-            {width: '70px', height: '60px', backgroundColor: 'black'},
-            {width: '80px', height: '80px', backgroundColor: 'black'},
-            {width: '90px', height: '90px', backgroundColor: 'black'},
-            {width: '100px', height: '100px', backgroundColor: 'black'},
-            {width: '190px', height: '200px', backgroundColor: 'black'},
-            {width: '280px', height: '300px'},
-            {width: '360px',height: '400px' },
-            // { transform: 'rotate(360deg)', opacity: '1' },
+            {  opacity: '0', },
+            { transform: 'translateX(-10px)', opacity: '0.5', },
+            { transform: 'translateX(0px)', opacity: '1',  },
         ],
         timing: {
-            duration: 1000,
+            duration: 2000,
             iterations: 1,
             easing: "ease-in-out",
 
         }
     })
-  
 
 
 
-return (
-    <div className="blog-page"
-        style={{
-            width: '100vw',
-            height: '100vh'
-        }}>
-        <video autoPlay="autoplay" loop muted className="back-vid"
+    const { ref, animate } = useWebAnimations();
+
+    useEffect(() => {
+        document.addEventListener("mousemove", e => {
+            try {
+                animate({
+                    keyframes: { transform: `translate(${e.clientX}px, ${e.clientY}px)` },
+                    timing: { duration: 5, fill: "forwards" }
+                });
+            } catch (error) {
+                // Ifnore error
+            }
+        });
+    }, [animate]);
+
+
+    return (
+        <div className="blog-page"
             style={{
                 width: '100vw',
-                height: '100vh',
-                objectFit: 'cover'
+                height: '100vh'
             }}>
-            <source src={blogback} />
-        </video>
-        <div className="card-wrapper" >
-            <div className="card" >
-
-                <div id="card1" ref={card1Animation.ref} >
-                    <Card className={classes.root}>
-                        <CardHeader
-                            avatar={
-                                <Avatar aria-label="recipe" className={classes.avatar}>
-                                    S
-          </Avatar>
-                            }
-
-                            title="Sophia"
-
-                        />
-                        <CardMedia
-                            className={classes.media}
-                            image="https://assets.madebyshape.co.uk/craft3-uploads/imager/163c52fa539a5b090734715290a64814/166445/ZOOM-SCREENSHOT_353fe568217a4ecd8f2727f818d6534e.webp"
-
-                        />
-                        <CardContent>
-                            <Typography variant="body2" color="inherit" component="p">
-
-                                Remote work experience during lockdown
-        </Typography>
-                        </CardContent>
-
-
-                    </Card>
-                </div>
-                <div id="card2" ref={card2Animation.ref}>
-                    <Card className={classes.root}>
-                        <CardHeader
-                            avatar={
-                                <Avatar aria-label="recipe" className={classes.avatar}>
-                                    J
-          </Avatar>
-                            }
-
-                            title="Jhon"
-
-                        />
-                        <CardMedia
-                            className={classes.media}
-                            image="https://assets.madebyshape.co.uk/craft3-uploads/imager/e03452863aa6625c13e4d7d7a1e2190c/162145/flora_353fe568217a4ecd8f2727f818d6534e.webp"
-
-                        />
-                        <CardContent>
-                            <Typography variant="body2" color="inherit" component="p">
-                                Jhom Wick: Working from home
-        </Typography>
-                        </CardContent>
-
-                    </Card>
-                </div>
-
+            <video autoPlay="autoplay" loop muted className="back-vid"
+                style={{
+                    width: '100vw',
+                    height: '100vh',
+                    objectFit: 'cover'
+                }}>
+                <source src={blogback} />
+            </video>
+            <div ref={ref} className="cursor2">
 
             </div>
+            <div className="card-wrapper" >
+                <div className="card" >
+
+                    <div id="card1" >
+                        <Card className={classes.root} ref={card1Animation.ref}>
+                            <CardHeader
+                                avatar={
+                                    <Avatar aria-label="recipe" className={classes.avatar}>
+                                        S
+          </Avatar>
+                                }
+
+                                title="Sophia"
+
+                            />
+                            <CardMedia
+                                className={classes.media}
+                                image="https://assets.madebyshape.co.uk/craft3-uploads/imager/163c52fa539a5b090734715290a64814/166445/ZOOM-SCREENSHOT_353fe568217a4ecd8f2727f818d6534e.webp"
+
+                            />
+                            <CardContent>
+                                <Typography variant="body2" color="inherit" component="p">
+
+                                    Remote work experience during lockdown
+        </Typography>
+                            </CardContent>
+
+
+                        </Card>
+                    </div>
+                    <div id="card2" >
+                        <Card className={classes.root} ref={card2Animation.ref}>
+                            <CardHeader
+                                avatar={
+                                    <Avatar aria-label="recipe" className={classes.avatar}>
+                                        J
+          </Avatar>
+                                }
+
+                                title="Jhon"
+
+                            />
+                            <CardMedia
+                                className={classes.media}
+                                image="https://assets.madebyshape.co.uk/craft3-uploads/imager/e03452863aa6625c13e4d7d7a1e2190c/162145/flora_353fe568217a4ecd8f2727f818d6534e.webp"
+
+                            />
+                            <CardContent>
+                                <Typography variant="body2" color="inherit" component="p">
+                                    Jhom Wick: Working from home
+        </Typography>
+                            </CardContent>
+
+                        </Card>
+                    </div>
+
+
+
+                </div>
+            </div >
         </div >
-    </div >
-)
+    )
 }
 
 

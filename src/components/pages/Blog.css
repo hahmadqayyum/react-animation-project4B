@@ -25,6 +25,14 @@
     align-self: flex-end;
     width: 345px;
 }
+.cursor2{
+    position: absolute;
+    border-radius: 100%;
+      width: 40px;
+      height: 40px;
+    background-color: white;
+      z-index: 5;
+    }
 
 @media (max-width: 500px) {
     .blog-page {

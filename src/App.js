@@ -9,7 +9,9 @@ import { Switch, Route } from "react-router-dom";
 
 
 
+
 const App = () => {
+  
   return (
     <div className="App">
       <NavBar />
@@ -19,9 +21,11 @@ const App = () => {
           <Route path="/blog" component={Blog} />
           <Route path="/contactus" component={Contact} />
         </Switch>
-      </div>
-
+       
     </div>
+     
+
+    </div >
   );
 };
 export default App;

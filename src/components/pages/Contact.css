@@ -1,0 +1,49 @@
+.form {
+    width: 30%;
+    height: 70%;
+    position: absolute;
+    margin: 110px;
+    border-radius: 5px;
+    background-color: rgba(151, 147, 147, 0.137);
+}
+
+.form h2, p {
+    text-align: center;
+    color: rgb(93, 36, 109);
+}
+
+.input-wrapper {
+    margin: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+}
+@media (max-width : 800px){
+    *{
+        overflow: hidden;
+        margin: 0;
+    }
+    .form{
+height: 70%;
+        margin: 0;
+        top: 100px;
+        margin-top: auto;
+        width: 50%;
+    }
+    .form h2{
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    *{
+        overflow: hidden;
+    }
+    .form {
+        margin: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        padding-top: 100%;
+    }
+}
